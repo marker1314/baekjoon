@@ -9,15 +9,18 @@ public class Main {
 		
 		String alp = "abcdefghijklmnopqrstuvwxyz";
 		int size = Integer.parseInt(br.readLine());
-		BigInteger res;
-		res = BigInteger.valueOf(0);
+		BigInteger res = new BigInteger("0");
+		BigInteger num = new BigInteger("31");
 		String temp = br.readLine();
 		
-		for (int i = 0; i < size; i++) 
-			res = res.add(BigInteger.valueOf((long)(Math.pow(31, i) * (alp.indexOf(temp.charAt(i)) + 1))));
+		for (int i = 0; i < size; i++) {
+			num = num.pow(i);
+			res = res.add(num.multiply(BigInteger.valueOf(alp.indexOf(temp.charAt(i)) + 1)));
+			num = BigInteger.valueOf(31);
+		}
 
 			
-		System.out.println(res);
+		System.out.println(res.mod(BigInteger.valueOf(1234567891)));
 		
 	}
 	
